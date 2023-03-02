@@ -14,9 +14,16 @@ function newQuote() {
     quoteText.textContent = text;
     authorText.textContent = author? author:'Unknown';
 }
-newQuoteBtn.addEventListener('click', ()=>{
-    newQuote();
-})
+// Tweet quote :
+function tweetQuote() {
+    const twitterUrl = `https://www.twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
+    window.open(twitterUrl, '_blank');
+}
+
+
+newQuoteBtn.addEventListener('click', newQuote);
+twitterBtn.addEventListener('click', tweetQuote);
+
 
 // Get API quotes
 async function getQuote() {
@@ -24,6 +31,7 @@ async function getQuote() {
     try {
         const response = await fetch(apiUrl);
         quotes = await response.json();
+        console.log(quotes);
         newQuote();
     } catch(err) {
 
