@@ -60,14 +60,21 @@ button {
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #777;
-    font-size: 1.2rem;
+
+    font-weight: 900;
+    text-transform: uppercase;
 }
 button:hover {
     filter: brightness(120%);
-    color: blue;
 }
 button:active {
     transform: translate(0, 0.1rem);
+}
+.fa-twitter {
+    font-size: 1.2rem;
+}
+.twitter-button:hover {
+    color: #38a1f3;
 }
 
 
