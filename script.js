@@ -1,5 +1,5 @@
-// import { quotes } from "./quotes.js";    // For local file
-let quotes = []; // For api
+import { quotes } from "./quotes.js";    // For local file
+// let quotes = []; // For api
 
 let quoteContainer = document.getElementById('quote-container');
 let quoteText = document.getElementById('quote');
@@ -8,11 +8,11 @@ let twitterBtn = document.getElementById('twitter');
 let newQuoteBtn = document.getElementById('new-quote');
 let loader = document.getElementById('loader');
 
-function loadingStart() {
+function showLoading() {
     loader.classList.remove("hide");
     quoteContainer.classList.add("hide");
 }
-function loadingEnd() {
+function hideLoading() {
     loader.classList.add("hide")
     quoteContainer.classList.remove("hide");
 }
@@ -20,7 +20,7 @@ function loadingEnd() {
 
 // Generating new quote :
 function newQuote() {   
-    loadingStart();
+    showLoading();
 
     let random = Math.floor(Math.random()*quotes.length);
     let {author, text} =  quotes[random];
@@ -28,33 +28,40 @@ function newQuote() {
     quoteText.textContent = text;
     authorText.textContent = author? author:'Unknown';
 
-    loadingEnd();
+    hideLoading();
 }
+newQuoteBtn.addEventListener('click', newQuote);
+
 // Tweet quote :
 function tweetQuote() {
     const twitterUrl = `https://www.twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
     window.open(twitterUrl, '_blank');
 }
-
-newQuoteBtn.addEventListener('click', newQuote);
 twitterBtn.addEventListener('click', tweetQuote);
 
 
 
 // Get API quotes
-async function getQuote() {
-    loadingStart();
-    const apiUrl = 'https://type.fit/api/quotes';
-    try {
-        const response = await fetch(apiUrl);
-        quotes = await response.json();
-        newQuote();
-    } catch(err) {
-        getQuote(); // if first time gives error it will try again
-        console.log(err);
-    }
+async function getQuote(count=0) {
+    showLoading();
+    
+    // // For api :
+    // const apiUrl = 'https://type.fit/api/quotes';
+    // try {
+    //     const response = await fetch(apiUrl);
+    //     quotes = await response.json();
+    //     newQuote();
+    //     // throw new Error; // To test the catch function
+    // } catch(err) {
+    //     console.log(err);
+    //     count<10 && getQuote(count+1); // if first time gives error it will try again for 10 times
+    // }
+    
+    
+    // For local file :
+    newQuote();  
 }
 
-// on load - start here
-getQuote(); // For api
-// newQuote();  // For local file
+getQuote(); 
+
+

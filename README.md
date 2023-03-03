@@ -2,6 +2,14 @@
 1. API : https://type.fit/api/quotes
 2. Loader : https://loading.io/css/
 3. Background Design : heropatterns.com
+4. Manipulating DOM : https://htmldom.dev/
+
+
+# Importing local file :
+I have created a file called 'quotes.js' to store the api value, incase the api doesn't work. To import the file :
+    a. export it : `export quotes = [...]`
+    b. set type to module : `<script src='./script.js' type='module'>`
+    c. import in js : `import { quotes } from './quotes.js`
 
 
 
