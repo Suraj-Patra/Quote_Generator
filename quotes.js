@@ -2,7 +2,7 @@
     This is a backup incase the api does not work
 */
 
-const quotes = 
+export const quotes = 
 [
     {
       "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
