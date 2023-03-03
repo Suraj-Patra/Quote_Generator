@@ -50,6 +50,7 @@ async function getQuote() {
         quotes = await response.json();
         newQuote();
     } catch(err) {
+        getQuote(); // if first time gives error it will try again
         console.log(err);
     }
 }
